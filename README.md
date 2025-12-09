@@ -1,191 +1,207 @@
-# Cloud IaC Audit — Infrastructure-as-Code Security Misconfiguration Scanner
-
-This repository provides a self-contained Infrastructure-as-Code (IaC) security auditing workflow.  
-It scans **Terraform configuration files** for cloud security misconfigurations, documents the findings, and includes **fixed versions** of each issue for validation and reporting.
-
-No cloud accounts, credentials, or external services are required — all scanning happens locally.
+# ☁️ Cloud Security Misconfiguration Auditing with IaC  
+### A Terraform Static Analysis & Remediation Project (Checkov + Python + Kali Linux)
 
 ---
 
-## 📁 Repository Structure
+## 📌 Project Overview
 
-This is the exact structure of the project:
+This project demonstrates a **Shift-Left Cloud Security workflow** by statically scanning Infrastructure-as-Code (IaC) for misconfigurations *before deployment*. Using **Checkov**, we identify high-severity cloud security issues in Terraform files, generate audit reports, then validate fixes by rescanning corrected versions.
 
-```text
-.
-├── artifacts/                ← Scan results (generated automatically)
-│   ├── fixed_checkov.json
-│   ├── fixed_checkov.txt
-│   ├── insecure_checkov.json
-│   └── insecure_checkov.txt
-├── examples/                 ← Vulnerable IaC Terraform files
-│   ├── ebs-no-encryption.tf
-│   ├── iam-wildcard.tf
-│   ├── kms-no-rotation.tf
-│   ├── s3-public.tf
-│   └── sg-open.tf
-├── fixed/                    ← Corrected, secure IaC versions
-│   ├── ebs-no-encryption-fixed.tf
-│   ├── iam-wildcard-fixed.tf
-│   ├── kms-no-rotation-fixed.tf
-│   ├── s3-public-fixed.tf
-│   ├── sg-open-fixed.tf
-│   └── (copies of original files for comparison)
+The project contains:
+
+- Vulnerable Terraform IaC (`examples/`)
+- Remediated secure IaC (`fixed/`)
+- A Python-based auditor (`src/scan.py`)
+- Automated scanning via Makefile
+- Audit artifacts stored in `artifacts/`
+
+Everything runs locally — **no AWS credentials or infrastructure required**.
+
+---
+
+## 🔍 High-Severity Findings Identified
+
+The following AWS misconfigurations were intentionally introduced and detected:
+
+### 1. **Public S3 Bucket**  
+File: `examples/s3-public.tf`  
+- ACL set to `public-read`  
+- Risk: Data exposure / unintended public access  
+
+### 2. **Security Group Exposing Port 22 to Internet**  
+File: `examples/sg-open.tf`  
+- `0.0.0.0/0` allowed on port 22  
+- Risk: Remote compromise  
+
+### 3. **Unencrypted EBS Volume**  
+File: `examples/ebs-no-encryption.tf`  
+- Missing encryption block  
+- Risk: Fails CIS benchmarks + sensitive data exposure  
+
+### 4. **Wildcard IAM Policy (`*` actions, `*` resources)**  
+File: `examples/iam-wildcard.tf`  
+- Violates least privilege  
+- Risk: Privilege escalation & full account compromise  
+
+### 5. **KMS Key Rotation Disabled**  
+File: `examples/kms-no-rotation.tf`  
+- `enable_key_rotation = false`  
+- Risk: Key lifecycle vulnerabilities & compliance failures  
+
+---
+
+## 🛠 Technology used
+
+| Component | Tool | Purpose |
+|----------|------|---------|
+| IaC Scanner | **Checkov** | Static security analysis |
+| IaC Language | **Terraform (.tf files)** | AWS Infrastructure definitions |
+| Automation | **Python (`src/scan.py`)** | Wrapper + reporting |
+| Dev Environment | **Kali Linux** | Verified system |
+| Build Tasks | **Makefile** | Streamlined audits |
+
+---
+
+## 📂 Repository Structure
+
+cloud-iac-audit/
+├── artifacts/
+│ ├── insecure_checkov.json
+│ ├── insecure_checkov.txt
+│ ├── fixed_checkov.json
+│ ├── fixed_checkov.txt
+│
+├── examples/
+│ ├── ebs-no-encryption.tf
+│ ├── iam-wildcard.tf
+│ ├── kms-no-rotation.tf
+│ ├── s3-public.tf
+│ ├── sg-open.tf
+│
+├── fixed/
+│ ├── ebs-no-encryption-fixed.tf
+│ ├── iam-wildcard-fixed.tf
+│ ├── kms-no-rotation-fixed.tf
+│ ├── s3-public-fixed.tf
+│ ├── sg-open-fixed.tf
+│
 ├── src/
-│   └── scan.py               ← Python wrapper that runs Checkov scans
-├── Makefile                  ← Convenience tasks (scan, clean, etc.)
-├── requirements.txt          ← Python package dependencies
-└── README.md                 ← Project documentation
-🎯 Project Purpose
-This project demonstrates:
+│ └── scan.py
+│
+├── Makefile
+├── requirements.txt
+└── README.md
 
-how cloud infrastructure misconfigurations occur inside Terraform,
+yaml
+Copy code
 
-how static IaC scanning tools identify them,
+---
 
-how to remediate each issue,
+## ⚙️ Installation (Kali Linux)
 
-and how to validate that fixes are correct.
+### 1. Clone the repository
 
-This is ideal for:
-
-✔ Cybersecurity coursework
-✔ Cloud compliance demonstrations
-✔ DevSecOps training
-✔ CI/CD security integration demos
-
-🛠 Installation
-1. Clone the repo
+```bash
+git clone https://github.com/jtproject02-cmd/cloud-iac-audit
+cd cloud-iac-audit
+2. Create virtual environment
 bash
 Copy code
-git clone https://github.com/jtproject02-cmd/cloud-iac-audit.git
-cd cloud-iac-audit
-2. Install Python dependencies
+python3 -m venv .venv
+source .venv/bin/activate
+3. Install scanner dependencies
 bash
 Copy code
 pip install -r requirements.txt
-This installs Checkov, the IaC scanner used in this project.
-
 🚀 Usage
-▶️ Scan vulnerable IaC code
-bash
-Copy code
-python3 src/scan.py examples/
-This produces:
-
-artifacts/insecure_checkov.json
-
-artifacts/insecure_checkov.txt (human-readable CLI output)
-
-▶️ Scan fixed IaC code
-bash
-Copy code
-python3 src/scan.py fixed/
-Outputs:
-
-artifacts/fixed_checkov.json
-
-artifacts/fixed_checkov.txt
-
-▶️ Makefile shortcuts
-Run all scans:
-
+🔸 Run scan on insecure Terraform files
 bash
 Copy code
 make scan
-Clean artifacts:
+This generates:
 
 bash
 Copy code
-make clean
-🔍 Misconfigurations Included (Before → After)
-Each Terraform file in examples/ intentionally contains a high-severity AWS misconfiguration.
+artifacts/insecure_checkov.json
+artifacts/insecure_checkov.txt
+These documents show all FAILED checks.
 
-1️⃣ Public S3 Bucket (s3-public.tf)
-Issue: Bucket ACL allows public read; no block-public-access.
+🔸 Run scan on fixed Terraform files
+bash
+Copy code
+make scan-fixed
+Outputs:
 
-Risk: Data exposure to the entire internet.
+bash
+Copy code
+artifacts/fixed_checkov.json
+artifacts/fixed_checkov.txt
+These represent PASSED checks after remediation.
 
-Fix: ACL set to private, public access block enabled.
-
-2️⃣ Security Group Open to World (sg-open.tf)
-Issue: Port 22 or 0–65535 open to 0.0.0.0/0.
-
-Risk: Remote compromise, brute force entry.
-
-Fix: Restrict to known CIDR range (e.g., corporate subnet).
-
-3️⃣ Unencrypted EBS Volume (ebs-no-encryption.tf)
-Issue: Encryption is disabled by default.
-
-Risk: Data-at-rest compromise.
-
-Fix: encrypted = true.
-
-4️⃣ Wildcard IAM Policy (iam-wildcard.tf)
-Issue: Action="*", Resource="*"
-
-Risk: Privilege escalation, full-account takeover.
-
-Fix: Restrict to specific actions & ARNs.
-
-5️⃣ KMS Key Rotation Disabled (kms-no-rotation.tf)
-Issue: enable_key_rotation = false
-
-Risk: Key aging, cryptographic weakness.
-
-Fix: Set enable_key_rotation = true.
-
-📊 Scan Output (Artifacts)
-Your scan results appear in the artifacts/ directory.
-
-File	Description
-insecure_checkov.json	JSON results of scanning the vulnerable IaC
-insecure_checkov.txt	Human-readable report of failures
-fixed_checkov.json	JSON results of scanning the remediated IaC
-fixed_checkov.txt	Confirms that fixes pass
-
-These can be used in:
-
-reports
-
-risk assessments
-
-compliance checklists
-
-audit documentation
-
-🧪 Validating Fixes
-You should see:
-
-❌ FAILED checks for the examples/ directory
-✔️ PASSED checks for the fixed/ directory
-
+🔸 Compare insecure vs fixed IaC
 Example:
 
-vbnet
+bash
 Copy code
-Check: CKV_AWS_20
-Resource: aws_s3_bucket.public
-Result: FAILED → PASSED (after fix)
-📚 How to Extend This Project
-You can easily add:
+git diff examples/sg-open.tf fixed/sg-open-fixed.tf
+Use this during a class presentation to show step-by-step remediation.
 
-CloudFormation (YAML/JSON)
+🧪 Automated Testing (Optional)
+You can add a script under tests/:
 
-Kubernetes manifests
+bash
+Copy code
+checkov -d examples | grep FAILED
+checkov -d fixed | grep PASSED
+echo "All tests passed."
+📄 Documentation (Optional)
+You can create:
 
-Additional Terraform modules
+bash
+Copy code
+docs/project-report.md
+docs/user-manual.md
+These typically include:
 
-Organization-specific policies
+Rule IDs
 
-CI/CD integration (GitHub Actions, GitLab CI, Jenkins)
+Misconfigurations
 
-Just drop new files into examples/ or fixed/ and re-run the scanner.
+Before/After code
 
-⚠️ Security Disclaimer
-This repository contains intentionally insecure IaC for educational and testing purposes only.
-Never deploy the examples/ directory into a real cloud environment.
+Screenshots of Checkov results
 
-🙌 Credits
-Developed as a lightweight, extensible platform for learning IaC security, cloud risk management, and automated misconfiguration detection.
+Useful for academic submissions.
+
+📘 Requirements Summary
+System-Level
+Python 3.8+
+
+pip
+
+Git
+
+make (GNU Make)
+
+Linux-based OS (Kali recommended)
+
+Python Level
+Installed automatically:
+
+nginx
+Copy code
+checkov
+No AWS CLI, no Terraform CLI, and no cloud credentials required.
+
+🏁 Conclusion
+This project effectively demonstrates:
+
+How IaC introduces security risks
+
+How automated scanning prevents insecure deployments
+
+How to remediate misconfigurations following best practices
+
+How to validate improvements and generate professional audit artifacts
+
+It is fully reproducible, cloud-free, and presentation-ready.
