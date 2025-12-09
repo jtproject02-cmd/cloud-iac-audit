@@ -1,5 +1,7 @@
-resource "aws_ebs_volume" "encrypted" {
+resource "aws_ebs_volume" "secure_volume" {
   availability_zone = "us-east-1a"
-  size = 8
+  size              = 10
+
   encrypted = true
 }
+
