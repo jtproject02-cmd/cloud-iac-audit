@@ -3,6 +3,59 @@
     "results": {
         "passed_checks": [
             {
+                "check_id": "CKV_AWS_33",
+                "bc_check_id": "BC_AWS_IAM_63",
+                "check_name": "Ensure KMS key policy does not contain wildcard (*) principal",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
+                    ],
+                    [
+                        2,
+                        "  description          = \"bad kms key\"\n"
+                    ],
+                    [
+                        3,
+                        "  enable_key_rotation  = false\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/kms-no-rotation.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf",
+                "repo_file_path": "/examples/kms-no-rotation.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_kms_key.no_rotate",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.KMSKeyWildcardPrincipal",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-kms-key-policy-does-not-contain-wildcard-principal",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf"
+            },
+            {
                 "check_id": "CKV_AWS_227",
                 "bc_check_id": "BC_AWS_GENERAL_122",
                 "check_name": "Ensure KMS key is enabled",
@@ -31,7 +84,7 @@
                     ]
                 ],
                 "file_path": "/kms-no-rotation.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf",
                 "repo_file_path": "/examples/kms-no-rotation.tf",
                 "file_line_range": [
                     1,
@@ -55,60 +108,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-key-management-service-kms-key-is-enabled",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
-            },
-            {
-                "check_id": "CKV_AWS_33",
-                "bc_check_id": "BC_AWS_IAM_63",
-                "check_name": "Ensure KMS key policy does not contain wildcard (*) principal",
-                "check_result": {
-                    "result": "PASSED",
-                    "evaluated_keys": []
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
-                    ],
-                    [
-                        2,
-                        "  description          = \"bad kms key\"\n"
-                    ],
-                    [
-                        3,
-                        "  enable_key_rotation  = false\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/kms-no-rotation.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
-                "repo_file_path": "/examples/kms-no-rotation.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_kms_key.no_rotate",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.KMSKeyWildcardPrincipal",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-kms-key-policy-does-not-contain-wildcard-principal",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf"
             },
             {
                 "check_id": "CKV_AWS_93",
@@ -139,7 +139,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -163,7 +163,84 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
+            },
+            {
+                "check_id": "CKV_AWS_260",
+                "bc_check_id": "BC_AWS_NETWORKING_67",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_security_group\" \"open_sg\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name = \"open-sg\"\n"
+                    ],
+                    [
+                        3,
+                        "\n"
+                    ],
+                    [
+                        4,
+                        "  ingress {\n"
+                    ],
+                    [
+                        5,
+                        "    from_port   = 22\n"
+                    ],
+                    [
+                        6,
+                        "    to_port     = 22\n"
+                    ],
+                    [
+                        7,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        8,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        9,
+                        "  }\n"
+                    ],
+                    [
+                        10,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
+                "repo_file_path": "/examples/sg-open.tf",
+                "file_line_range": [
+                    1,
+                    10
+                ],
+                "resource": "aws_security_group.open_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress80",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
                 "check_id": "CKV_AWS_382",
@@ -221,7 +298,7 @@
                     ]
                 ],
                 "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
                 "repo_file_path": "/examples/sg-open.tf",
                 "file_line_range": [
                     1,
@@ -245,161 +322,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
-            },
-            {
-                "check_id": "CKV_AWS_277",
-                "bc_check_id": "BC_AWS_NETWORKING_78",
-                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1",
-                "check_result": {
-                    "result": "PASSED",
-                    "evaluated_keys": []
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_security_group\" \"open_sg\" {\n"
-                    ],
-                    [
-                        2,
-                        "  name = \"open-sg\"\n"
-                    ],
-                    [
-                        3,
-                        "\n"
-                    ],
-                    [
-                        4,
-                        "  ingress {\n"
-                    ],
-                    [
-                        5,
-                        "    from_port   = 22\n"
-                    ],
-                    [
-                        6,
-                        "    to_port     = 22\n"
-                    ],
-                    [
-                        7,
-                        "    protocol    = \"tcp\"\n"
-                    ],
-                    [
-                        8,
-                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
-                    ],
-                    [
-                        9,
-                        "  }\n"
-                    ],
-                    [
-                        10,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
-                "repo_file_path": "/examples/sg-open.tf",
-                "file_line_range": [
-                    1,
-                    10
-                ],
-                "resource": "aws_security_group.open_sg",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngressAny",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
-            },
-            {
-                "check_id": "CKV_AWS_260",
-                "bc_check_id": "BC_AWS_NETWORKING_67",
-                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
-                "check_result": {
-                    "result": "PASSED",
-                    "evaluated_keys": []
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_security_group\" \"open_sg\" {\n"
-                    ],
-                    [
-                        2,
-                        "  name = \"open-sg\"\n"
-                    ],
-                    [
-                        3,
-                        "\n"
-                    ],
-                    [
-                        4,
-                        "  ingress {\n"
-                    ],
-                    [
-                        5,
-                        "    from_port   = 22\n"
-                    ],
-                    [
-                        6,
-                        "    to_port     = 22\n"
-                    ],
-                    [
-                        7,
-                        "    protocol    = \"tcp\"\n"
-                    ],
-                    [
-                        8,
-                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
-                    ],
-                    [
-                        9,
-                        "  }\n"
-                    ],
-                    [
-                        10,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
-                "repo_file_path": "/examples/sg-open.tf",
-                "file_line_range": [
-                    1,
-                    10
-                ],
-                "resource": "aws_security_group.open_sg",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress80",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
                 "check_id": "CKV_AWS_25",
@@ -452,7 +375,7 @@
                     ]
                 ],
                 "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
                 "repo_file_path": "/examples/sg-open.tf",
                 "file_line_range": [
                     1,
@@ -476,7 +399,84 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
+            },
+            {
+                "check_id": "CKV_AWS_277",
+                "bc_check_id": "BC_AWS_NETWORKING_78",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_security_group\" \"open_sg\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name = \"open-sg\"\n"
+                    ],
+                    [
+                        3,
+                        "\n"
+                    ],
+                    [
+                        4,
+                        "  ingress {\n"
+                    ],
+                    [
+                        5,
+                        "    from_port   = 22\n"
+                    ],
+                    [
+                        6,
+                        "    to_port     = 22\n"
+                    ],
+                    [
+                        7,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        8,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        9,
+                        "  }\n"
+                    ],
+                    [
+                        10,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
+                "repo_file_path": "/examples/sg-open.tf",
+                "file_line_range": [
+                    1,
+                    10
+                ],
+                "resource": "aws_security_group.open_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngressAny",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
                 "check_id": "CKV2_AWS_2",
@@ -500,8 +500,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "encrypted",
-                        "resource_type"
+                        "resource_type",
+                        "encrypted"
                     ]
                 },
                 "code_block": [
@@ -523,7 +523,7 @@
                     ]
                 ],
                 "file_path": "/ebs-no-encryption.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf",
                 "repo_file_path": "/examples/ebs-no-encryption.tf",
                 "file_line_range": [
                     1,
@@ -547,7 +547,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-only-encrypted-ebs-volumes-are-attached-to-ec2-instances",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf"
             },
             {
                 "check_id": "CKV_AWS_19",
@@ -571,9 +571,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
                         "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type"
+                        "resource_type",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
                     ]
                 },
                 "code_block": [
@@ -595,7 +595,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -619,7 +619,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             },
             {
                 "check_id": "CKV_AWS_57",
@@ -643,12 +643,12 @@
                         }
                     },
                     "evaluated_keys": [
-                        "acl",
-                        "access_control_policy/grant",
-                        "access_control_policy/grant/*/grantee/uri",
                         "resource_type",
                         "access_control_policy/grant/*/permission",
-                        "access_control_policy"
+                        "acl",
+                        "access_control_policy",
+                        "access_control_policy/grant",
+                        "access_control_policy/grant/*/grantee/uri"
                     ]
                 },
                 "code_block": [
@@ -670,7 +670,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -694,7 +694,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             }
         ],
         "failed_checks": [
@@ -727,7 +727,7 @@
                     ]
                 ],
                 "file_path": "/ebs-no-encryption.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf",
                 "repo_file_path": "/examples/ebs-no-encryption.tf",
                 "file_line_range": [
                     1,
@@ -751,7 +751,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-3-encrypt-ebs-volume",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf"
             },
             {
                 "check_id": "CKV_AWS_189",
@@ -782,7 +782,7 @@
                     ]
                 ],
                 "file_path": "/ebs-no-encryption.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf",
                 "repo_file_path": "/examples/ebs-no-encryption.tf",
                 "file_line_range": [
                     1,
@@ -806,12 +806,12 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-109",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/ebs-no-encryption.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/ebs-no-encryption.tf"
             },
             {
-                "check_id": "CKV_AWS_288",
-                "bc_check_id": "BC_AWS_IAM_83",
-                "check_name": "Ensure IAM policies does not allow data exfiltration",
+                "check_id": "CKV_AWS_290",
+                "bc_check_id": "BC_AWS_IAM_85",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
                 "check_result": {
                     "result": "FAILED",
                     "evaluated_keys": [
@@ -865,7 +865,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -873,7 +873,7 @@
                 ],
                 "resource": "aws_iam_policy.wild",
                 "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.IAMDataExfiltration",
+                "check_class": "checkov.terraform.checks.resource.aws.IAMWriteAccess",
                 "fixed_definition": null,
                 "entity_tags": null,
                 "caller_file_path": null,
@@ -886,10 +886,10 @@
                 "short_description": null,
                 "vulnerability_details": null,
                 "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288",
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_63",
@@ -949,7 +949,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -973,7 +973,173 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-48",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
+            },
+            {
+                "check_id": "CKV_AWS_355",
+                "bc_check_id": "BC_AWS_IAM_88",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_iam_policy\" \"wild\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name = \"wild-policy\"\n"
+                    ],
+                    [
+                        3,
+                        "  policy = jsonencode({\n"
+                    ],
+                    [
+                        4,
+                        "    Version = \"2012-10-17\"\n"
+                    ],
+                    [
+                        5,
+                        "    Statement = [{\n"
+                    ],
+                    [
+                        6,
+                        "      Effect = \"Allow\"\n"
+                    ],
+                    [
+                        7,
+                        "      Action = \"*\"\n"
+                    ],
+                    [
+                        8,
+                        "      Resource = \"*\"\n"
+                    ],
+                    [
+                        9,
+                        "    }]\n"
+                    ],
+                    [
+                        10,
+                        "  })\n"
+                    ],
+                    [
+                        11,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
+                "repo_file_path": "/examples/iam-wildcard.tf",
+                "file_line_range": [
+                    1,
+                    11
+                ],
+                "resource": "aws_iam_policy.wild",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMStarResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
+            },
+            {
+                "check_id": "CKV_AWS_288",
+                "bc_check_id": "BC_AWS_IAM_83",
+                "check_name": "Ensure IAM policies does not allow data exfiltration",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_iam_policy\" \"wild\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name = \"wild-policy\"\n"
+                    ],
+                    [
+                        3,
+                        "  policy = jsonencode({\n"
+                    ],
+                    [
+                        4,
+                        "    Version = \"2012-10-17\"\n"
+                    ],
+                    [
+                        5,
+                        "    Statement = [{\n"
+                    ],
+                    [
+                        6,
+                        "      Effect = \"Allow\"\n"
+                    ],
+                    [
+                        7,
+                        "      Action = \"*\"\n"
+                    ],
+                    [
+                        8,
+                        "      Resource = \"*\"\n"
+                    ],
+                    [
+                        9,
+                        "    }]\n"
+                    ],
+                    [
+                        10,
+                        "  })\n"
+                    ],
+                    [
+                        11,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
+                "repo_file_path": "/examples/iam-wildcard.tf",
+                "file_line_range": [
+                    1,
+                    11
+                ],
+                "resource": "aws_iam_policy.wild",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMDataExfiltration",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_287",
@@ -1032,7 +1198,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -1056,7 +1222,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-287",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_62",
@@ -1116,7 +1282,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -1140,7 +1306,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_286",
@@ -1199,7 +1365,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -1223,173 +1389,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-286",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
-            },
-            {
-                "check_id": "CKV_AWS_355",
-                "bc_check_id": "BC_AWS_IAM_88",
-                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
-                "check_result": {
-                    "result": "FAILED",
-                    "evaluated_keys": [
-                        "policy/Statement/[0]/Action"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_iam_policy\" \"wild\" {\n"
-                    ],
-                    [
-                        2,
-                        "  name = \"wild-policy\"\n"
-                    ],
-                    [
-                        3,
-                        "  policy = jsonencode({\n"
-                    ],
-                    [
-                        4,
-                        "    Version = \"2012-10-17\"\n"
-                    ],
-                    [
-                        5,
-                        "    Statement = [{\n"
-                    ],
-                    [
-                        6,
-                        "      Effect = \"Allow\"\n"
-                    ],
-                    [
-                        7,
-                        "      Action = \"*\"\n"
-                    ],
-                    [
-                        8,
-                        "      Resource = \"*\"\n"
-                    ],
-                    [
-                        9,
-                        "    }]\n"
-                    ],
-                    [
-                        10,
-                        "  })\n"
-                    ],
-                    [
-                        11,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
-                "repo_file_path": "/examples/iam-wildcard.tf",
-                "file_line_range": [
-                    1,
-                    11
-                ],
-                "resource": "aws_iam_policy.wild",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.IAMStarResourcePolicyDocument",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
-            },
-            {
-                "check_id": "CKV_AWS_290",
-                "bc_check_id": "BC_AWS_IAM_85",
-                "check_name": "Ensure IAM policies does not allow write access without constraints",
-                "check_result": {
-                    "result": "FAILED",
-                    "evaluated_keys": [
-                        "policy/Statement/[0]/Action"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_iam_policy\" \"wild\" {\n"
-                    ],
-                    [
-                        2,
-                        "  name = \"wild-policy\"\n"
-                    ],
-                    [
-                        3,
-                        "  policy = jsonencode({\n"
-                    ],
-                    [
-                        4,
-                        "    Version = \"2012-10-17\"\n"
-                    ],
-                    [
-                        5,
-                        "    Statement = [{\n"
-                    ],
-                    [
-                        6,
-                        "      Effect = \"Allow\"\n"
-                    ],
-                    [
-                        7,
-                        "      Action = \"*\"\n"
-                    ],
-                    [
-                        8,
-                        "      Resource = \"*\"\n"
-                    ],
-                    [
-                        9,
-                        "    }]\n"
-                    ],
-                    [
-                        10,
-                        "  })\n"
-                    ],
-                    [
-                        11,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
-                "repo_file_path": "/examples/iam-wildcard.tf",
-                "file_line_range": [
-                    1,
-                    11
-                ],
-                "resource": "aws_iam_policy.wild",
-                "evaluations": null,
-                "check_class": "checkov.terraform.checks.resource.aws.IAMWriteAccess",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_289",
@@ -1448,7 +1448,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -1472,7 +1472,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             },
             {
                 "check_id": "CKV_AWS_7",
@@ -1503,7 +1503,7 @@
                     ]
                 ],
                 "file_path": "/kms-no-rotation.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf",
                 "repo_file_path": "/examples/kms-no-rotation.tf",
                 "file_line_range": [
                     1,
@@ -1527,7 +1527,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-8",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf"
             },
             {
                 "check_id": "CKV_AWS_23",
@@ -1582,7 +1582,7 @@
                     ]
                 ],
                 "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
                 "repo_file_path": "/examples/sg-open.tf",
                 "file_line_range": [
                     1,
@@ -1606,7 +1606,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
                 "check_id": "CKV_AWS_24",
@@ -1664,7 +1664,7 @@
                     ]
                 ],
                 "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
                 "repo_file_path": "/examples/sg-open.tf",
                 "file_line_range": [
                     1,
@@ -1688,61 +1688,99 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
-                "check_id": "CKV2_AWS_6",
-                "bc_check_id": "BC_AWS_NETWORKING_52",
-                "check_name": "Ensure that S3 bucket has a Public Access block",
+                "check_id": "CKV2_AWS_5",
+                "bc_check_id": "BC_AWS_NETWORKING_51",
+                "check_name": "Ensure that Security Groups are attached to another resource",
                 "check_result": {
                     "result": "FAILED",
                     "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
+                        "aws_security_group": {
+                            "open_sg": {
+                                "__end_line__": 10,
                                 "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
+                                "ingress": [
+                                    {
+                                        "cidr_blocks": [
+                                            [
+                                                "0.0.0.0/0"
+                                            ]
+                                        ],
+                                        "from_port": [
+                                            22
+                                        ],
+                                        "protocol": [
+                                            "tcp"
+                                        ],
+                                        "to_port": [
+                                            22
+                                        ]
+                                    }
                                 ],
-                                "bucket": [
-                                    "public-bucket-example"
+                                "name": [
+                                    "open-sg"
                                 ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
+                                "__address__": "aws_security_group.open_sg"
                             }
                         }
                     },
                     "evaluated_keys": [
-                        "block_public_acls",
-                        "block_public_policy",
-                        "resource_type"
+                        "resource_type",
+                        "networking"
                     ]
                 },
                 "code_block": [
                     [
                         1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                        "resource \"aws_security_group\" \"open_sg\" {\n"
                     ],
                     [
                         2,
-                        "  bucket = \"public-bucket-example\"\n"
+                        "  name = \"open-sg\"\n"
                     ],
                     [
                         3,
-                        "  acl    = \"public-read\"\n"
+                        "\n"
                     ],
                     [
                         4,
+                        "  ingress {\n"
+                    ],
+                    [
+                        5,
+                        "    from_port   = 22\n"
+                    ],
+                    [
+                        6,
+                        "    to_port     = 22\n"
+                    ],
+                    [
+                        7,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        8,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        9,
+                        "  }\n"
+                    ],
+                    [
+                        10,
                         "}\n"
                     ]
                 ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
+                "file_path": "/sg-open.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf",
+                "repo_file_path": "/examples/sg-open.tf",
                 "file_line_range": [
                     1,
-                    4
+                    10
                 ],
-                "resource": "aws_s3_bucket.bad_bucket",
+                "resource": "aws_security_group.open_sg",
                 "evaluations": null,
                 "check_class": "checkov.common.graph.checks_infra.base_check",
                 "fixed_definition": null,
@@ -1757,10 +1795,10 @@
                 "short_description": null,
                 "vulnerability_details": null,
                 "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/sg-open.tf"
             },
             {
                 "check_id": "CKV2_AWS_62",
@@ -1806,7 +1844,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -1830,7 +1868,224 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
+            },
+            {
+                "check_id": "CKV_AWS_18",
+                "bc_check_id": "BC_AWS_S3_13",
+                "check_name": "Ensure the S3 bucket has access logging enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "logging",
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
+            },
+            {
+                "check_id": "CKV_AWS_20",
+                "bc_check_id": "BC_AWS_S3_1",
+                "check_name": "S3 Bucket has an ACL defined which allows public READ access.",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "acl",
+                        "access_control_policy",
+                        "access_control_policy/grant",
+                        "access_control_policy/grant/*/grantee/uri"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_6",
+                "bc_check_id": "BC_AWS_NETWORKING_52",
+                "check_name": "Ensure that S3 bucket has a Public Access block",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "block_public_policy",
+                        "block_public_acls"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             },
             {
                 "check_id": "CKV_AWS_145",
@@ -1854,9 +2109,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
                         "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type"
+                        "resource_type",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
                     ]
                 },
                 "code_block": [
@@ -1878,7 +2133,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -1902,60 +2157,61 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             },
             {
-                "check_id": "CKV2_AWS_64",
-                "bc_check_id": "BC_AWS_IAM_76",
-                "check_name": "Ensure KMS key Policy is defined",
+                "check_id": "CKV_AWS_144",
+                "bc_check_id": "BC_AWS_GENERAL_72",
+                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
                 "check_result": {
                     "result": "FAILED",
                     "entity": {
-                        "aws_kms_key": {
-                            "no_rotate": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
                                 "__end_line__": 4,
                                 "__start_line__": 1,
-                                "description": [
-                                    "bad kms key"
+                                "acl": [
+                                    "public-read"
                                 ],
-                                "enable_key_rotation": [
-                                    false
+                                "bucket": [
+                                    "public-bucket-example"
                                 ],
-                                "__address__": "aws_kms_key.no_rotate"
+                                "__address__": "aws_s3_bucket.bad_bucket"
                             }
                         }
                     },
                     "evaluated_keys": [
-                        "policy",
-                        "resource_type"
+                        "replication_configuration/rules/*/status",
+                        "resource_type",
+                        "rule/*/status"
                     ]
                 },
                 "code_block": [
                     [
                         1,
-                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
                     ],
                     [
                         2,
-                        "  description          = \"bad kms key\"\n"
+                        "  bucket = \"public-bucket-example\"\n"
                     ],
                     [
                         3,
-                        "  enable_key_rotation  = false\n"
+                        "  acl    = \"public-read\"\n"
                     ],
                     [
                         4,
                         "}\n"
                     ]
                 ],
-                "file_path": "/kms-no-rotation.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
-                "repo_file_path": "/examples/kms-no-rotation.tf",
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
                     4
                 ],
-                "resource": "aws_kms_key.no_rotate",
+                "resource": "aws_s3_bucket.bad_bucket",
                 "evaluations": null,
                 "check_class": "checkov.common.graph.checks_infra.base_check",
                 "fixed_definition": null,
@@ -1970,10 +2226,10 @@
                 "short_description": null,
                 "vulnerability_details": null,
                 "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             },
             {
                 "check_id": "CKV_AWS_21",
@@ -2021,7 +2277,7 @@
                     ]
                 ],
                 "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
                 "repo_file_path": "/examples/s3-public.tf",
                 "file_line_range": [
                     1,
@@ -2045,7 +2301,149 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_64",
+                "bc_check_id": "BC_AWS_IAM_76",
+                "check_name": "Ensure KMS key Policy is defined",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_kms_key": {
+                            "no_rotate": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "description": [
+                                    "bad kms key"
+                                ],
+                                "enable_key_rotation": [
+                                    false
+                                ],
+                                "__address__": "aws_kms_key.no_rotate"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "policy"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
+                    ],
+                    [
+                        2,
+                        "  description          = \"bad kms key\"\n"
+                    ],
+                    [
+                        3,
+                        "  enable_key_rotation  = false\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/kms-no-rotation.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf",
+                "repo_file_path": "/examples/kms-no-rotation.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_kms_key.no_rotate",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/kms-no-rotation.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "lifecycle_rule"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/s3-public.tf"
             },
             {
                 "check_id": "CKV2_AWS_40",
@@ -2079,8 +2477,8 @@
                     },
                     "evaluated_keys": [
                         "statement[?(@/effect == Allow)]/actions[*]",
-                        "policy/Statement[?(@/Effect == Allow)]/Action[*]",
-                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]"
+                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]",
+                        "policy/Statement[?(@/Effect == Allow)]/Action[*]"
                     ]
                 },
                 "code_block": [
@@ -2130,7 +2528,7 @@
                     ]
                 ],
                 "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "file_abs_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf",
                 "repo_file_path": "/examples/iam-wildcard.tf",
                 "file_line_range": [
                     1,
@@ -2154,405 +2552,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
-            },
-            {
-                "check_id": "CKV2_AWS_61",
-                "bc_check_id": "BC_AWS_LOGGING_35",
-                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "lifecycle_rule",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
-            },
-            {
-                "check_id": "CKV2_AWS_5",
-                "bc_check_id": "BC_AWS_NETWORKING_51",
-                "check_name": "Ensure that Security Groups are attached to another resource",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_security_group": {
-                            "open_sg": {
-                                "__end_line__": 10,
-                                "__start_line__": 1,
-                                "ingress": [
-                                    {
-                                        "cidr_blocks": [
-                                            [
-                                                "0.0.0.0/0"
-                                            ]
-                                        ],
-                                        "from_port": [
-                                            22
-                                        ],
-                                        "protocol": [
-                                            "tcp"
-                                        ],
-                                        "to_port": [
-                                            22
-                                        ]
-                                    }
-                                ],
-                                "name": [
-                                    "open-sg"
-                                ],
-                                "__address__": "aws_security_group.open_sg"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "networking",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_security_group\" \"open_sg\" {\n"
-                    ],
-                    [
-                        2,
-                        "  name = \"open-sg\"\n"
-                    ],
-                    [
-                        3,
-                        "\n"
-                    ],
-                    [
-                        4,
-                        "  ingress {\n"
-                    ],
-                    [
-                        5,
-                        "    from_port   = 22\n"
-                    ],
-                    [
-                        6,
-                        "    to_port     = 22\n"
-                    ],
-                    [
-                        7,
-                        "    protocol    = \"tcp\"\n"
-                    ],
-                    [
-                        8,
-                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
-                    ],
-                    [
-                        9,
-                        "  }\n"
-                    ],
-                    [
-                        10,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/sg-open.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf",
-                "repo_file_path": "/examples/sg-open.tf",
-                "file_line_range": [
-                    1,
-                    10
-                ],
-                "resource": "aws_security_group.open_sg",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/sg-open.tf"
-            },
-            {
-                "check_id": "CKV_AWS_144",
-                "bc_check_id": "BC_AWS_GENERAL_72",
-                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "rule/*/status",
-                        "replication_configuration/rules/*/status",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
-            },
-            {
-                "check_id": "CKV_AWS_20",
-                "bc_check_id": "BC_AWS_S3_1",
-                "check_name": "S3 Bucket has an ACL defined which allows public READ access.",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "acl",
-                        "access_control_policy/grant",
-                        "access_control_policy/grant/*/grantee/uri",
-                        "resource_type",
-                        "access_control_policy"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
-            },
-            {
-                "check_id": "CKV_AWS_18",
-                "bc_check_id": "BC_AWS_S3_13",
-                "check_name": "Ensure the S3 bucket has access logging enabled",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "logging",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
+                "definition_context_file_path": "/home/low8maximum/cloud-iac-audit/examples/iam-wildcard.tf"
             }
         ],
         "skipped_checks": [],
