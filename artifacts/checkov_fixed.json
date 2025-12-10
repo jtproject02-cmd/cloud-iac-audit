@@ -2401,8 +2401,8 @@
                     },
                     "evaluated_keys": [
                         "block_public_policy",
-                        "resource_type",
-                        "block_public_acls"
+                        "block_public_acls",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -2513,8 +2513,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "encrypted"
+                        "encrypted",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -2587,8 +2587,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "encrypted"
+                        "encrypted",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -2643,6 +2643,143 @@
                 "details": [],
                 "check_len": null,
                 "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/ebs-no-encryption.tf"
+            },
+            {
+                "check_id": "CKV_AWS_19",
+                "bc_check_id": "BC_AWS_S3_14",
+                "check_name": "Ensure all data stored in the S3 bucket is securely encrypted at rest",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public-fixed.tf",
+                "file_abs_path": "/home/kali/cloud-iac-audit/fixed/s3-public-fixed.tf",
+                "repo_file_path": "/fixed/s3-public-fixed.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/s3-public-fixed.tf"
+            },
+            {
+                "check_id": "CKV_AWS_19",
+                "bc_check_id": "BC_AWS_S3_14",
+                "check_name": "Ensure all data stored in the S3 bucket is securely encrypted at rest",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "secure_bucket": {
+                                "__end_line__": 3,
+                                "__start_line__": 1,
+                                "bucket": [
+                                    "my-secure-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.secure_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "resource_type"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"secure_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"my-secure-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/kali/cloud-iac-audit/fixed/s3-public.tf",
+                "repo_file_path": "/fixed/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    3
+                ],
+                "resource": "aws_s3_bucket.secure_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/s3-public.tf"
             },
             {
                 "check_id": "CKV2_AWS_43",
@@ -2736,12 +2873,12 @@
                         }
                     },
                     "evaluated_keys": [
-                        "access_control_policy/grant/*/grantee/uri",
-                        "acl",
-                        "access_control_policy/grant/*/permission",
-                        "access_control_policy/grant",
                         "resource_type",
-                        "access_control_policy"
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy/grant",
+                        "access_control_policy",
+                        "access_control_policy/grant/*/permission"
                     ]
                 },
                 "code_block": [
@@ -2808,12 +2945,12 @@
                         }
                     },
                     "evaluated_keys": [
-                        "access_control_policy/grant/*/grantee/uri",
-                        "acl",
-                        "access_control_policy/grant/*/permission",
-                        "access_control_policy/grant",
                         "resource_type",
-                        "access_control_policy"
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy/grant",
+                        "access_control_policy",
+                        "access_control_policy/grant/*/permission"
                     ]
                 },
                 "code_block": [
@@ -2887,143 +3024,6 @@
                 "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/s3-public.tf"
             },
             {
-                "check_id": "CKV_AWS_19",
-                "bc_check_id": "BC_AWS_S3_14",
-                "check_name": "Ensure all data stored in the S3 bucket is securely encrypted at rest",
-                "check_result": {
-                    "result": "PASSED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type",
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public-fixed.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/fixed/s3-public-fixed.tf",
-                "repo_file_path": "/fixed/s3-public-fixed.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/s3-public-fixed.tf"
-            },
-            {
-                "check_id": "CKV_AWS_19",
-                "bc_check_id": "BC_AWS_S3_14",
-                "check_name": "Ensure all data stored in the S3 bucket is securely encrypted at rest",
-                "check_result": {
-                    "result": "PASSED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "secure_bucket": {
-                                "__end_line__": 3,
-                                "__start_line__": 1,
-                                "bucket": [
-                                    "my-secure-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.secure_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type",
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"secure_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"my-secure-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/fixed/s3-public.tf",
-                "repo_file_path": "/fixed/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    3
-                ],
-                "resource": "aws_s3_bucket.secure_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/fixed/s3-public.tf"
-            },
-            {
                 "check_id": "CKV2_AWS_40",
                 "bc_check_id": "BC_AWS_IAM_73",
                 "check_name": "Ensure AWS IAM policy does not allow full IAM privileges",
@@ -3057,9 +3057,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "policy/Statement[?(@/Effect == Allow)]/Action[*]",
                         "statement[?(@/effect == Allow)]/actions[*]",
-                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]"
+                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]",
+                        "policy/Statement[?(@/Effect == Allow)]/Action[*]"
                     ]
                 },
                 "code_block": [
@@ -3178,10 +3178,10 @@
                         }
                     },
                     "evaluated_keys": [
-                        "access_control_policy/grant/*/grantee/uri",
-                        "acl",
-                        "access_control_policy/grant",
                         "resource_type",
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy/grant",
                         "access_control_policy"
                     ]
                 },
@@ -4547,8 +4547,8 @@
                     },
                     "evaluated_keys": [
                         "block_public_policy",
-                        "resource_type",
-                        "block_public_acls"
+                        "block_public_acls",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -4761,8 +4761,8 @@
                     },
                     "evaluated_keys": [
                         "versioning/enabled",
-                        "resource_type",
-                        "versioning_configuration/status"
+                        "versioning_configuration/status",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -4830,8 +4830,8 @@
                     },
                     "evaluated_keys": [
                         "versioning/enabled",
-                        "resource_type",
-                        "versioning_configuration/status"
+                        "versioning_configuration/status",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -4897,9 +4897,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
                         "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -4966,9 +4966,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
                         "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5184,8 +5184,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "networking"
+                        "networking",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5294,8 +5294,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "networking"
+                        "networking",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5390,8 +5390,8 @@
                     },
                     "evaluated_keys": [
                         "rule/*/status",
-                        "resource_type",
-                        "replication_configuration/rules/*/status"
+                        "replication_configuration/rules/*/status",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5459,8 +5459,8 @@
                     },
                     "evaluated_keys": [
                         "rule/*/status",
-                        "resource_type",
-                        "replication_configuration/rules/*/status"
+                        "replication_configuration/rules/*/status",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5535,9 +5535,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "policy/Statement[?(@/Effect == Allow)]/Action[*]",
                         "statement[?(@/effect == Allow)]/actions[*]",
-                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]"
+                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]",
+                        "policy/Statement[?(@/Effect == Allow)]/Action[*]"
                     ]
                 },
                 "code_block": [
@@ -5635,10 +5635,10 @@
                         }
                     },
                     "evaluated_keys": [
-                        "access_control_policy/grant/*/grantee/uri",
-                        "acl",
-                        "access_control_policy/grant",
                         "resource_type",
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy/grant",
                         "access_control_policy"
                     ]
                 },
@@ -5709,8 +5709,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "logging"
+                        "logging",
+                        "resource_type"
                     ]
                 },
                 "code_block": [
@@ -5777,8 +5777,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "resource_type",
-                        "logging"
+                        "logging",
+                        "resource_type"
                     ]
                 },
                 "code_block": [

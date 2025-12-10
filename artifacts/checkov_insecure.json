@@ -500,8 +500,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "encrypted",
-                        "resource_type"
+                        "resource_type",
+                        "encrypted"
                     ]
                 },
                 "code_block": [
@@ -572,8 +572,8 @@
                     },
                     "evaluated_keys": [
                         "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type"
+                        "resource_type",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm"
                     ]
                 },
                 "code_block": [
@@ -643,12 +643,12 @@
                         }
                     },
                     "evaluated_keys": [
-                        "acl",
-                        "access_control_policy/grant",
-                        "access_control_policy/grant/*/grantee/uri",
-                        "resource_type",
                         "access_control_policy/grant/*/permission",
-                        "access_control_policy"
+                        "access_control_policy",
+                        "resource_type",
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy/grant"
                     ]
                 },
                 "code_block": [
@@ -1712,9 +1712,9 @@
                         }
                     },
                     "evaluated_keys": [
-                        "block_public_acls",
+                        "resource_type",
                         "block_public_policy",
-                        "resource_type"
+                        "block_public_acls"
                     ]
                 },
                 "code_block": [
@@ -1833,149 +1833,6 @@
                 "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
             },
             {
-                "check_id": "CKV_AWS_145",
-                "bc_check_id": "BC_AWS_GENERAL_56",
-                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_s3_bucket": {
-                            "bad_bucket": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "acl": [
-                                    "public-read"
-                                ],
-                                "bucket": [
-                                    "public-bucket-example"
-                                ],
-                                "__address__": "aws_s3_bucket.bad_bucket"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
-                    ],
-                    [
-                        2,
-                        "  bucket = \"public-bucket-example\"\n"
-                    ],
-                    [
-                        3,
-                        "  acl    = \"public-read\"\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/s3-public.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
-                "repo_file_path": "/examples/s3-public.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_s3_bucket.bad_bucket",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
-            },
-            {
-                "check_id": "CKV2_AWS_64",
-                "bc_check_id": "BC_AWS_IAM_76",
-                "check_name": "Ensure KMS key Policy is defined",
-                "check_result": {
-                    "result": "FAILED",
-                    "entity": {
-                        "aws_kms_key": {
-                            "no_rotate": {
-                                "__end_line__": 4,
-                                "__start_line__": 1,
-                                "description": [
-                                    "bad kms key"
-                                ],
-                                "enable_key_rotation": [
-                                    false
-                                ],
-                                "__address__": "aws_kms_key.no_rotate"
-                            }
-                        }
-                    },
-                    "evaluated_keys": [
-                        "policy",
-                        "resource_type"
-                    ]
-                },
-                "code_block": [
-                    [
-                        1,
-                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
-                    ],
-                    [
-                        2,
-                        "  description          = \"bad kms key\"\n"
-                    ],
-                    [
-                        3,
-                        "  enable_key_rotation  = false\n"
-                    ],
-                    [
-                        4,
-                        "}\n"
-                    ]
-                ],
-                "file_path": "/kms-no-rotation.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
-                "repo_file_path": "/examples/kms-no-rotation.tf",
-                "file_line_range": [
-                    1,
-                    4
-                ],
-                "resource": "aws_kms_key.no_rotate",
-                "evaluations": null,
-                "check_class": "checkov.common.graph.checks_infra.base_check",
-                "fixed_definition": null,
-                "entity_tags": null,
-                "caller_file_path": null,
-                "caller_file_line_range": null,
-                "resource_address": null,
-                "severity": null,
-                "bc_category": null,
-                "benchmarks": null,
-                "description": null,
-                "short_description": null,
-                "vulnerability_details": null,
-                "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
-                "details": [],
-                "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
-            },
-            {
                 "check_id": "CKV_AWS_21",
                 "bc_check_id": "BC_AWS_S3_16",
                 "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
@@ -1998,8 +1855,8 @@
                     },
                     "evaluated_keys": [
                         "resource_type",
-                        "versioning_configuration/status",
-                        "versioning/enabled"
+                        "versioning/enabled",
+                        "versioning_configuration/status"
                     ]
                 },
                 "code_block": [
@@ -2048,95 +1905,57 @@
                 "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
             },
             {
-                "check_id": "CKV2_AWS_40",
-                "bc_check_id": "BC_AWS_IAM_73",
-                "check_name": "Ensure AWS IAM policy does not allow full IAM privileges",
+                "check_id": "CKV2_AWS_64",
+                "bc_check_id": "BC_AWS_IAM_76",
+                "check_name": "Ensure KMS key Policy is defined",
                 "check_result": {
                     "result": "FAILED",
                     "entity": {
-                        "aws_iam_policy": {
-                            "wild": {
-                                "__end_line__": 11,
+                        "aws_kms_key": {
+                            "no_rotate": {
+                                "__end_line__": 4,
                                 "__start_line__": 1,
-                                "name": [
-                                    "wild-policy"
+                                "description": [
+                                    "bad kms key"
                                 ],
-                                "policy": [
-                                    {
-                                        "Version": "2012-10-17",
-                                        "Statement": [
-                                            {
-                                                "Effect": "Allow",
-                                                "Action": "*",
-                                                "Resource": "*"
-                                            }
-                                        ]
-                                    }
+                                "enable_key_rotation": [
+                                    false
                                 ],
-                                "__address__": "aws_iam_policy.wild"
+                                "__address__": "aws_kms_key.no_rotate"
                             }
                         }
                     },
                     "evaluated_keys": [
-                        "statement[?(@/effect == Allow)]/actions[*]",
-                        "policy/Statement[?(@/Effect == Allow)]/Action[*]",
-                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]"
+                        "resource_type",
+                        "policy"
                     ]
                 },
                 "code_block": [
                     [
                         1,
-                        "resource \"aws_iam_policy\" \"wild\" {\n"
+                        "resource \"aws_kms_key\" \"no_rotate\" {\n"
                     ],
                     [
                         2,
-                        "  name = \"wild-policy\"\n"
+                        "  description          = \"bad kms key\"\n"
                     ],
                     [
                         3,
-                        "  policy = jsonencode({\n"
+                        "  enable_key_rotation  = false\n"
                     ],
                     [
                         4,
-                        "    Version = \"2012-10-17\"\n"
-                    ],
-                    [
-                        5,
-                        "    Statement = [{\n"
-                    ],
-                    [
-                        6,
-                        "      Effect = \"Allow\"\n"
-                    ],
-                    [
-                        7,
-                        "      Action = \"*\"\n"
-                    ],
-                    [
-                        8,
-                        "      Resource = \"*\"\n"
-                    ],
-                    [
-                        9,
-                        "    }]\n"
-                    ],
-                    [
-                        10,
-                        "  })\n"
-                    ],
-                    [
-                        11,
                         "}\n"
                     ]
                 ],
-                "file_path": "/iam-wildcard.tf",
-                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
-                "repo_file_path": "/examples/iam-wildcard.tf",
+                "file_path": "/kms-no-rotation.tf",
+                "file_abs_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf",
+                "repo_file_path": "/examples/kms-no-rotation.tf",
                 "file_line_range": [
                     1,
-                    11
+                    4
                 ],
-                "resource": "aws_iam_policy.wild",
+                "resource": "aws_kms_key.no_rotate",
                 "evaluations": null,
                 "check_class": "checkov.common.graph.checks_infra.base_check",
                 "fixed_definition": null,
@@ -2151,10 +1970,82 @@
                 "short_description": null,
                 "vulnerability_details": null,
                 "connected_node": null,
-                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40",
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/kms-no-rotation.tf"
+            },
+            {
+                "check_id": "CKV_AWS_145",
+                "bc_check_id": "BC_AWS_GENERAL_56",
+                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "bad_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "public-read"
+                                ],
+                                "bucket": [
+                                    "public-bucket-example"
+                                ],
+                                "__address__": "aws_s3_bucket.bad_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "resource_type",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_s3_bucket\" \"bad_bucket\" {\n"
+                    ],
+                    [
+                        2,
+                        "  bucket = \"public-bucket-example\"\n"
+                    ],
+                    [
+                        3,
+                        "  acl    = \"public-read\"\n"
+                    ],
+                    [
+                        4,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/s3-public.tf",
+                "file_abs_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf",
+                "repo_file_path": "/examples/s3-public.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "aws_s3_bucket.bad_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
             },
             {
                 "check_id": "CKV2_AWS_61",
@@ -2178,8 +2069,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "lifecycle_rule",
-                        "resource_type"
+                        "resource_type",
+                        "lifecycle_rule"
                     ]
                 },
                 "code_block": [
@@ -2264,8 +2155,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "networking",
-                        "resource_type"
+                        "resource_type",
+                        "networking"
                     ]
                 },
                 "code_block": [
@@ -2359,9 +2250,9 @@
                         }
                     },
                     "evaluated_keys": [
+                        "resource_type",
                         "rule/*/status",
-                        "replication_configuration/rules/*/status",
-                        "resource_type"
+                        "replication_configuration/rules/*/status"
                     ]
                 },
                 "code_block": [
@@ -2431,11 +2322,11 @@
                         }
                     },
                     "evaluated_keys": [
-                        "acl",
-                        "access_control_policy/grant",
-                        "access_control_policy/grant/*/grantee/uri",
+                        "access_control_policy",
                         "resource_type",
-                        "access_control_policy"
+                        "access_control_policy/grant",
+                        "acl",
+                        "access_control_policy/grant/*/grantee/uri"
                     ]
                 },
                 "code_block": [
@@ -2484,6 +2375,115 @@
                 "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/s3-public.tf"
             },
             {
+                "check_id": "CKV2_AWS_40",
+                "bc_check_id": "BC_AWS_IAM_73",
+                "check_name": "Ensure AWS IAM policy does not allow full IAM privileges",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_iam_policy": {
+                            "wild": {
+                                "__end_line__": 11,
+                                "__start_line__": 1,
+                                "name": [
+                                    "wild-policy"
+                                ],
+                                "policy": [
+                                    {
+                                        "Version": "2012-10-17",
+                                        "Statement": [
+                                            {
+                                                "Effect": "Allow",
+                                                "Action": "*",
+                                                "Resource": "*"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "__address__": "aws_iam_policy.wild"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]",
+                        "statement[?(@/effect == Allow)]/actions[*]",
+                        "policy/Statement[?(@/Effect == Allow)]/Action[*]"
+                    ]
+                },
+                "code_block": [
+                    [
+                        1,
+                        "resource \"aws_iam_policy\" \"wild\" {\n"
+                    ],
+                    [
+                        2,
+                        "  name = \"wild-policy\"\n"
+                    ],
+                    [
+                        3,
+                        "  policy = jsonencode({\n"
+                    ],
+                    [
+                        4,
+                        "    Version = \"2012-10-17\"\n"
+                    ],
+                    [
+                        5,
+                        "    Statement = [{\n"
+                    ],
+                    [
+                        6,
+                        "      Effect = \"Allow\"\n"
+                    ],
+                    [
+                        7,
+                        "      Action = \"*\"\n"
+                    ],
+                    [
+                        8,
+                        "      Resource = \"*\"\n"
+                    ],
+                    [
+                        9,
+                        "    }]\n"
+                    ],
+                    [
+                        10,
+                        "  })\n"
+                    ],
+                    [
+                        11,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/iam-wildcard.tf",
+                "file_abs_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf",
+                "repo_file_path": "/examples/iam-wildcard.tf",
+                "file_line_range": [
+                    1,
+                    11
+                ],
+                "resource": "aws_iam_policy.wild",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/kali/cloud-iac-audit/examples/iam-wildcard.tf"
+            },
+            {
                 "check_id": "CKV_AWS_18",
                 "bc_check_id": "BC_AWS_S3_13",
                 "check_name": "Ensure the S3 bucket has access logging enabled",
@@ -2505,8 +2505,8 @@
                         }
                     },
                     "evaluated_keys": [
-                        "logging",
-                        "resource_type"
+                        "resource_type",
+                        "logging"
                     ]
                 },
                 "code_block": [
