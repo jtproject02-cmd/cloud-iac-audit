@@ -1,5 +1,4 @@
-resource "aws_kms_key" "secure_kms" {
-  description         = "secure kms key"
-  enable_key_rotation = true
+resource "aws_kms_key" "no_rotate" {
+  enable_key_rotation = false
 }
 
