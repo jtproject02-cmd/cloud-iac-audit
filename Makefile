@@ -9,3 +9,6 @@ clean:
 	rm -rf artifacts/*.json artifacts/*.txt
 	@echo "Cleaned scan artifacts."
 
+scan-fixed:
+	@echo "Running Checkov on fixed IaC..."
+	python3 src/scan.py fixed/
